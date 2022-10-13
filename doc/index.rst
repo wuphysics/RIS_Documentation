@@ -10,9 +10,12 @@ RIS official documentation is here: https://docs.ris.wustl.edu/index.html
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
+   :caption: WashU RIS Documentation
 
    quick_start
+   docker_mpi
+   package_management
+
 
 Indices and tables
 ==================

@@ -1,0 +1,19 @@
+#dockerfile using root-ubuntu as base and installing git
+
+FROM rootproject/root:6.24.00-ubuntu20.04
+
+#install necessary packages
+ENV DEBIAN_FRONTEND=noninteractive
+RUN apt-get update \
+    && apt-get install -y \
+    git \
+    && apt-get install -y debconf-utils \
+    && apt-get clean
+
+
+
+
+
+
+
+

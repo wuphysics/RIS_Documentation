@@ -1,4 +1,4 @@
 env
-docs/build
-source/_static
-source/_templates
+_build
+doc/_static
+doc/_templates
