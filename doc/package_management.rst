@@ -20,9 +20,10 @@ location. A step-by-step guide is as follows:
    Substitute ``${COMPUTE_ALLOCATION}`` with the name of your storage
    allocation. It is very likely just the username of the PI.
 
-1. Start with a base Docker image. We will be using ``ubuntu:20.04``. Request an
-   interactive session with your storage partition mounted at a specific system
-   location::
+1. Start with a base Docker image. We will be using ``ubuntu:20.04``. Starting
+   from other distributions or newer Ubuntu may give arise to problems due to a
+   different shell version. Request an interactive session with your storage
+   partition mounted at a specific system location::
 
     export LSF_DOCKER_VOLUMES='/storage1/fs1/${COMPUTE_ALLOCATION}/Active/modules:/usr/local/modules /storage1/fs1/${COMPUTE_ALLOCATION}/Active:/storage1'
     cd

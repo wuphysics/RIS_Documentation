@@ -20,3 +20,11 @@ drivers and suppress specific warnings. I also found that starting with
 base docker images that are not ``ubuntu:20.04`` may create a shell script
 problem that prevents one from running ``./configure`` which is crucial
 for compiling custom software packages.
+
+I created a ``Dockerfile`` that installs the OFED driver and UCX. It is hosted
+at the GitHub repo of this documentation:
+https://github.com/fizban007/RIS_Documentation, under the directory
+`Dockers/Dockerfile.cuda_hpc`. Note that the ``Dockerfile`` itself is
+incomplete, as I installed CUDA, OpenMPI, and HDF5 in an interactive session and
+installed them to my storage partition. A simple guide of doing that is at
+:doc:`package_management`.

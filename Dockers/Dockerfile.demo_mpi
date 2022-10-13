@@ -3,7 +3,7 @@ FROM ubuntu:20.04
 LABEL maintainer="sleong@wustl.edu"
 
 # Setup LSF link libraries
-# COPY lsf/ /opt/ibm/lsfsuite/lsf/10.1/
+COPY lsf/ /opt/ibm/lsfsuite/lsf/10.1/
 
 RUN export DEBIAN_FRONTEND=noninteractive && apt-get update && \
     apt-get install -y \
@@ -74,15 +74,15 @@ RUN apt-get remove -y ucx && \
 ENV OPENMPI_VERSION_MAJOR=4.0
 ENV OPENMPI_VERSION=4.0.1
 # Install Open MPI
-# RUN mkdir /tmp/openmpi && \
-#     cd /tmp/openmpi && \
-#     wget -q https://download.open-mpi.org/release/open-mpi/v${OPENMPI_VERSION_MAJOR}/openmpi-${OPENMPI_VERSION}.tar.gz && \
-#     tar zxf openmpi-${OPENMPI_VERSION}.tar.gz && \
-#     cd openmpi-${OPENMPI_VERSION} && \
-#     ./configure --with-lsf=/opt/ibm/lsfsuite/lsf/10.1/ --enable-orterun-prefix-by-default --with-lsf-libdir=/opt/ibm/lsfsuite/lsf/10.1/linux2.6-glibc2.3-x86_64/lib/ --with-ucx=/usr --enable-mca-no-build=btl-uct && \
-#     make -j $(nproc) all && \
-#     make install && \
-#     ldconfig && \
-#     rm -rf /tmp/openmpi
+RUN mkdir /tmp/openmpi && \
+    cd /tmp/openmpi && \
+    wget -q https://download.open-mpi.org/release/open-mpi/v${OPENMPI_VERSION_MAJOR}/openmpi-${OPENMPI_VERSION}.tar.gz && \
+    tar zxf openmpi-${OPENMPI_VERSION}.tar.gz && \
+    cd openmpi-${OPENMPI_VERSION} && \
+    ./configure --with-lsf=/opt/ibm/lsfsuite/lsf/10.1/ --enable-orterun-prefix-by-default --with-lsf-libdir=/opt/ibm/lsfsuite/lsf/10.1/linux2.6-glibc2.3-x86_64/lib/ --with-ucx=/usr --enable-mca-no-build=btl-uct && \
+    make -j $(nproc) all && \
+    make install && \
+    ldconfig && \
+    rm -rf /tmp/openmpi
 
 RUN apt-get install -y cmake
