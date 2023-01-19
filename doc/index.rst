@@ -3,8 +3,8 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to RIS Documentation!
-=============================
+Welcome to the Physics Department RIS Documentation!
+====================================================
 
 RIS official documentation is here: https://docs.ris.wustl.edu/index.html
 
