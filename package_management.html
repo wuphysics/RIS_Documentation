@@ -1,0 +1,257 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Package Management for Docker Images &mdash; RIS Documentation 0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="MPI on RIS" href="docker_mpi.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> RIS Documentation
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">WashU RIS Documentation</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="quick_start.html">RIS Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docker_mpi.html">MPI on RIS</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Package Management for Docker Images</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">RIS Documentation</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Package Management for Docker Images</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/package_management.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="package-management-for-docker-images">
+<h1>Package Management for Docker Images<a class="headerlink" href="#package-management-for-docker-images" title="Permalink to this heading">¶</a></h1>
+<p>One potential problem for the Docker system is that when the user has too many
+software packages, especially large ones such as the Intel oneAPI or the CUDA
+Toolkit, then the Docker image becomes very large and difficult to use. A
+potential way to solve this problem is to install these packages in the storage
+partition instead of the Docker image itself.</p>
+<p>Take CUDA toolkit as an example. The install size of the complete CUDA Toolkit
+is about 5GB. However, one can install it in an interactive bash session on the
+RIS, as long as they point the installation prefix to a mounted storage
+location. A step-by-step guide is as follows:</p>
+<ol class="arabic" start="0">
+<li><p>Download your package installer. We will be using CUDA 11.7.1 as an example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>cd /storage1/fs1/${COMPUTE_ALLOCATION}/Active
+wget https://developer.download.nvidia.com/compute/cuda/11.7.1/local_installers/cuda_11.7.1_515.65.01_linux.run
+</pre></div>
+</div>
+<p>Substitute <code class="docutils literal notranslate"><span class="pre">${COMPUTE_ALLOCATION}</span></code> with the name of your storage
+allocation. It is very likely just the username of the PI.</p>
+</li>
+<li><p>Start with a base Docker image. We will be using <code class="docutils literal notranslate"><span class="pre">ubuntu:20.04</span></code>. Starting
+from other distributions or newer Ubuntu may give arise to problems due to a
+different shell version. Request an interactive session with your storage
+partition mounted at a specific system location:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>export LSF_DOCKER_VOLUMES=&#39;/storage1/fs1/${COMPUTE_ALLOCATION}/Active/modules:/usr/local/modules /storage1/fs1/${COMPUTE_ALLOCATION}/Active:/storage1&#39;
+cd
+bsub -Is -G ${COMPUTE_ALLOCATION} -q general-interactive -a &#39;docker(ubuntu:20.04)&#39; bash
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">LSF_DOCKER_VOLUMES</span></code> environment variable has the format <code class="docutils literal notranslate"><span class="pre">source:destination</span></code>, where <code class="docutils literal notranslate"><span class="pre">source</span></code> is the location accessible to the login node, while <code class="docutils literal notranslate"><span class="pre">destination</span></code> is on your Docker image. Different mounts are separated by space. We are also mounting the whole active storage to <code class="docutils literal notranslate"><span class="pre">/storage1</span></code> so that we can access our installer. The interactive session will always mount the current directory you are at, so it is often useful to <code class="docutils literal notranslate"><span class="pre">cd</span></code> back to home before calling <code class="docutils literal notranslate"><span class="pre">bsub</span></code>, so that you retain access to your home directory.</p>
+</li>
+<li><p>Now you are in the <code class="docutils literal notranslate"><span class="pre">bash</span></code> prompt of your Docker image. We can go to <code class="docutils literal notranslate"><span class="pre">/storage1</span></code> and run the CUDA installer. Remember to add <code class="docutils literal notranslate"><span class="pre">--installpath</span></code> pointing towards the other mounted directory:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">/</span><span class="n">storage1</span>
+<span class="n">bash</span> <span class="n">cuda_11</span><span class="mf">.7.1_515.65.01</span><span class="n">_linux</span><span class="o">.</span><span class="n">run</span> <span class="o">--</span><span class="n">silent</span> <span class="o">--</span><span class="n">driver</span> <span class="o">--</span><span class="n">toolkit</span> <span class="o">--</span><span class="n">installpath</span><span class="o">=/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">modules</span><span class="o">/</span><span class="n">cuda</span><span class="o">-</span><span class="mf">11.7.1</span>
+</pre></div>
+</div>
+<p>Unfortunately this will not work out of the box since we are missing some CUDA dependencies (e.g. <code class="docutils literal notranslate"><span class="pre">libxml2</span></code>) in the base <code class="docutils literal notranslate"><span class="pre">ubuntu:20.04</span></code> image. The steps outlined above is mostly to demonstrate a principle. This principle applies to many other packages too, especially software that you want to build from source. In that case, you would want to do <code class="docutils literal notranslate"><span class="pre">./configure</span> <span class="pre">--prefix=/usr/local/modules/name-of-software-with-version</span></code> before building and installing. One of the problems with the Docker environment on the RIS is that users do not have superuser privileges. This somewhat negates that since you should always have write permission in the directory you mounted, which is <code class="docutils literal notranslate"><span class="pre">/usr/local/modules</span></code>. Other choices for the mounting point can be e.g. <code class="docutils literal notranslate"><span class="pre">/etc/modules</span></code>, <code class="docutils literal notranslate"><span class="pre">/opt/modules</span></code>.</p>
+</li>
+<li><p>Before we are completely done, it is useful to build a Docker image that knows the location of the software you installed with the help of environment variables. Normally you could do this with a line <code class="docutils literal notranslate"><span class="pre">ENV</span> <span class="pre">VARIABLE</span> <span class="pre">value</span></code> in the <code class="docutils literal notranslate"><span class="pre">Dockerfile</span></code>, but on RIS the <code class="docutils literal notranslate"><span class="pre">ENV</span></code> lines do not seem to be propagated, so one can instead write them into the global <code class="docutils literal notranslate"><span class="pre">bashrc</span></code> file located at <code class="docutils literal notranslate"><span class="pre">/etc/bashrc</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">FROM</span> <span class="n">ubuntu</span><span class="p">:</span><span class="mf">20.04</span>
+
+<span class="n">RUN</span> <span class="n">echo</span> <span class="s2">&quot;export PATH=/usr/local/modules/cuda-11.7.1/bin:$PATH&quot;</span> <span class="o">&gt;&gt;</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">bashrc</span>
+</pre></div>
+</div>
+</li>
+</ol>
+<p>This method also has its own drawbacks. One example is what we have encountered: if the installer has some external dependencies, then one needs to start with a Docker image with that installed. The other problem is that anything in the <code class="docutils literal notranslate"><span class="pre">/storage1</span></code> partition automatically do not have execute permission. This can be problematic for installers that extract into a temporary location, then run the install scripts. Your best bet is to instruct the installer to extract into your home directory, and run the installation there.</p>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="docker_mpi.html" class="btn btn-neutral float-left" title="MPI on RIS" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2022, Alex Chen.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

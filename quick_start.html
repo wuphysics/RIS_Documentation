@@ -1,0 +1,274 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>RIS Quick Start &mdash; RIS Documentation 0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="MPI on RIS" href="docker_mpi.html" />
+    <link rel="prev" title="Welcome to the Physics Department RIS Documentation!" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> RIS Documentation
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">WashU RIS Documentation</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">RIS Quick Start</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#getting-an-account">Getting an account</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#logging-in">Logging in</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#using-docker">Using Docker</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="docker_mpi.html">MPI on RIS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="package_management.html">Package Management for Docker Images</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">RIS Documentation</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>RIS Quick Start</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/quick_start.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="ris-quick-start">
+<h1>RIS Quick Start<a class="headerlink" href="#ris-quick-start" title="Permalink to this heading">¶</a></h1>
+<section id="getting-an-account">
+<h2>Getting an account<a class="headerlink" href="#getting-an-account" title="Permalink to this heading">¶</a></h2>
+<p>In order to get an account, go to this link:
+<a class="reference external" href="https://ris.wustl.edu/services/compute/resources/">https://ris.wustl.edu/services/compute/resources/</a> and click “Request Service”.
+You’ll need to log in with your WUSTL Key. Then, click on the first link, which
+is “Request a NEW Compute Service”. You’ll need to fill a form, indicating your
+PI. Ask your PI about the cost center number, which should be the same for a
+given department.</p>
+</section>
+<section id="logging-in">
+<h2>Logging in<a class="headerlink" href="#logging-in" title="Permalink to this heading">¶</a></h2>
+<p>There are 4 log-in nodes that you can connect to: <code class="docutils literal notranslate"><span class="pre">client-1</span></code>, <code class="docutils literal notranslate"><span class="pre">client-2</span></code>, <code class="docutils literal notranslate"><span class="pre">client-3</span></code>,
+and <code class="docutils literal notranslate"><span class="pre">client-4</span></code>. You can connect to e.g. <code class="docutils literal notranslate"><span class="pre">client-1</span></code> using:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ssh<span class="w"> </span>wustlkey@compute1-client-1.ris.wustl.edu
+</pre></div>
+</div>
+<p>Substitute you own WUSTL Key for <code class="docutils literal notranslate"><span class="pre">wustlkey</span></code>, and substitute <code class="docutils literal notranslate"><span class="pre">client-1</span></code> for
+other clients like <code class="docutils literal notranslate"><span class="pre">client-3</span></code>. Note that you’ll need to use the WashU VPN if
+you connect from outside the campus: <a class="reference external" href="https://it.wustl.edu/items/connect/">https://it.wustl.edu/items/connect/</a>.</p>
+<p>It is recommended to set up an SSH key for authentication. A guide is provided
+by the RIS here:
+<a class="reference external" href="https://docs.ris.wustl.edu/doc/compute/recipes/ssh-keypair.html#ris-ssh-keypair">https://docs.ris.wustl.edu/doc/compute/recipes/ssh-keypair.html#ris-ssh-keypair</a>.</p>
+</section>
+<section id="using-docker">
+<h2>Using Docker<a class="headerlink" href="#using-docker" title="Permalink to this heading">¶</a></h2>
+<p>Almost everything you do on the RIS cluster needs to be done through a Docker
+container. A Docker container is an immutable environment that contains whatever
+software packages you need. For more information, visit the Docker website:
+<a class="reference external" href="https://www.docker.com/">https://www.docker.com/</a>.</p>
+<p>One can use a basic Docker image such as <code class="docutils literal notranslate"><span class="pre">ubuntu/20.04</span></code>. The following command
+will pull the image from Docker Hub, request an interactive session on the RIS
+cluster, and put you under a bash prompt:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>bsub<span class="w"> </span>-Is<span class="w"> </span>-G<span class="w"> </span>compute-USERNAME<span class="w"> </span>-q<span class="w"> </span>general-interactive<span class="w"> </span>-a<span class="w"> </span><span class="s1">&#39;docker(ubuntu:20.04)&#39;</span><span class="w"> </span>bash
+</pre></div>
+</div>
+<p>The part following <code class="docutils literal notranslate"><span class="pre">-G</span></code> is the PI’s compute group account (often the username
+of the PI), and the path in parenthesis is the Docker image path on Docker Hub.
+This command will request a compute node, pull the Docker image from the Hub
+(which takes a few minutes), and finally put you in an interactive bash
+environment.</p>
+<p>Due to the nature of Docker, any packages you install while you are in the
+Docker container is not saved. Fortunately, your home directory from the RIS
+system is mounted in the Docker container. Therefore, it is possible to make
+modifications to the content of your home directory while you are in the Docker
+container, and retain those modifications even after you log out. One can also
+mount the scratch filesystem and write the simulation data there. For example,
+you can export the following environment variable before you launch <code class="docutils literal notranslate"><span class="pre">bsub</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">LSF_DOCKER_VOLUMES</span><span class="o">=</span><span class="s1">&#39;/scratch1/fs1/${COMPUTE_ALLOCATION}:/scratch1/fs1/${COMPUTE_ALLOCATION}&#39;</span>
+</pre></div>
+</div>
+<p>where ${COMPUTE_ALLOCATION} may be your username or the PI’s. This will mount
+the scratch partition to the same location inside the Docker container. Storage
+mounting is documented here:
+<a class="reference external" href="https://docs.ris.wustl.edu/doc/compute/recipes/job-execution-examples.html#start-an-interactive-job-with-access-to-all-my-data">https://docs.ris.wustl.edu/doc/compute/recipes/job-execution-examples.html#start-an-interactive-job-with-access-to-all-my-data</a></p>
+</section>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="docker_mpi.html" class="btn btn-neutral float-right" title="MPI on RIS" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to the Physics Department RIS Documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2022, Alex Chen.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
