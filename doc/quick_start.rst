@@ -43,4 +43,27 @@ cluster, and put you under a bash prompt:
 
 .. code-block:: bash
 
-    bsub -Is -G compute-cyuran -q general-interactive -a 'docker(ubuntu:20.04)' bash
+    bsub -Is -G compute-USERNAME -q general-interactive -a 'docker(ubuntu:20.04)' bash
+
+The part following ``-G`` is the PI’s compute group account (often the username
+of the PI), and the path in parenthesis is the Docker image path on Docker Hub.
+This command will request a compute node, pull the Docker image from the Hub
+(which takes a few minutes), and finally put you in an interactive bash
+environment.
+
+Due to the nature of Docker, any packages you install while you are in the
+Docker container is not saved. Fortunately, your home directory from the RIS
+system is mounted in the Docker container. Therefore, it is possible to make
+modifications to the content of your home directory while you are in the Docker
+container, and retain those modifications even after you log out. One can also
+mount the scratch filesystem and write the simulation data there. For example,
+you can export the following environment variable before you launch ``bsub``:
+
+.. code-block:: bash
+
+    export LSF_DOCKER_VOLUMES='/scratch1/fs1/${COMPUTE_ALLOCATION}:/scratch1/fs1/${COMPUTE_ALLOCATION}'
+
+where ${COMPUTE_ALLOCATION} may be your username or the PI's. This will mount
+the scratch partition to the same location inside the Docker container. Storage
+mounting is documented here:
+https://docs.ris.wustl.edu/doc/compute/recipes/job-execution-examples.html#start-an-interactive-job-with-access-to-all-my-data
