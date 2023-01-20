@@ -36,3 +36,11 @@ Almost everything you do on the RIS cluster needs to be done through a Docker
 container. A Docker container is an immutable environment that contains whatever
 software packages you need. For more information, visit the Docker website:
 https://www.docker.com/.
+
+One can use a basic Docker image such as ``ubuntu/20.04``. The following command
+will pull the image from Docker Hub, request an interactive session on the RIS
+cluster, and put you under a bash prompt:
+
+.. code-block:: bash
+
+    bsub -Is -G compute-cyuran -q general-interactive -a 'docker(ubuntu:20.04)' bash
